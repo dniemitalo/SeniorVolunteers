@@ -1,4 +1,30 @@
 <?php
+function too_soon(){
+	//return true if signup is not live yet
+	date_default_timezone_set('America/Chicago'); // CDT
+	$info = getdate();
+	$date = $info['mday'];
+	$month = $info['mon'];
+	$year = $info['year'];
+	$hour = $info['hours'];
+	if($month > 4){
+		return false;
+	}
+	else if ($month == 4 && $date > 28){
+		return false;
+	}
+	else if($month == 4 && $date == 28 && $hour >= 14){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+if(too_soon()){
+	die("Signup is not live until Friday, 4/28/17 at 2:00 PM.");
+}
+
 require_once('db.php');
 $first = trim(mysqli_real_escape_string($conn,$_POST['first']));
 $last = trim(mysqli_real_escape_string($conn,$_POST['last']));
@@ -41,10 +67,3 @@ if($result = mysqli_query($conn,$sql)){
 
 mysqli_close($conn);
 ?>
-
-
-
-
-
-	
-	

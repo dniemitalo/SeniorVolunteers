@@ -5,6 +5,7 @@ error_reporting(E_ALL | E_STRICT);
 require_once('db.php');
 $sql = "SELECT * FROM placements";
 $result = mysqli_query($conn,$sql);
+
 $output_array = array();
 while($row = mysqli_fetch_assoc($result)){
 	$output_array[] = $row;

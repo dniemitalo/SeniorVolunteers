@@ -22,13 +22,11 @@ function getSpeakers(){
         if (xhr.status === 200) {
             speakers = JSON.parse(xhr.responseText);
             var htmlText = "";
-            htmlText += "<table><tr><th>teacher</th><th>room</th><th>topic</th><th>facilitators</th></tr>\n";
+            htmlText += "<table><tr><th>topic</th><th>spots</th></tr>\n";
             for (i=0;i<parseInt(speakers.length);i++){
                 htmlText += "<tr>";
-                htmlText += "<td>"+ speakers[i]['teacher']+"</td>";
-                htmlText += "<td>"+ speakers[i]['room']+"</td>";
                 htmlText += "<td>"+ speakers[i]['topic']+"</td>";
-                htmlText += "<td>"+ speakers[i]['facilitators']+"</td>";
+                htmlText += "<td>"+ speakers[i]['maxstudents']+"</td>";
                 htmlText += "<td><button type='button' onClick='deleteSpeaker("+speakers[i]['id']+")'+>Delete</button></td>";
                 htmlText += "</tr>";
             }
